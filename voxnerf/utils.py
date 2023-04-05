@@ -59,7 +59,7 @@ def to_step(pbar, percent):
 def every(pbar, *, percent=None, step=None):
     if step is None:
         step = to_step(pbar, percent)
-    return (pbar.n + 1) % step == 0
+    return (pbar.n + 1) % step == 0 if step > 0 else True
 
 
 def at(pbar, *, percent=None, step=None):
