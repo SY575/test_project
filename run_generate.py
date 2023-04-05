@@ -245,6 +245,6 @@ if __name__ == '__main__':
     print('step 2: gen_3d')
     opt_step_2 = 100
     pivot_step_2 = 100
-    gen_3d(model,intermediate,prompt_input_2, word_input_2, seed_2, opt_step_2, pivot_step_2)
+    intermediate_output,logs,video_result = gen_3d(model,intermediate,prompt_input_2, word_input_2, seed_2, opt_step_2, pivot_step_2)
     
 
