@@ -110,7 +110,6 @@ def semantic_coding(exp_dir,cfgs,sd,initial):
         initial=None
     
     train(pretrained_model_name_or_path='runwayml/stable-diffusion-v1-5',\
-          #pretrained_model_name_or_path='stabilityai/stable-diffusion-2-1-base',\
           instance_data_dir=instance_dir,output_dir=weight_dir,gradient_checkpointing=True,\
           scale_lr=True,lora_rank=1,cached_latents=False,save_steps=ti_step,\
           max_train_steps_ti=ti_step,max_train_steps_tuning=pt_step, use_template="object",\

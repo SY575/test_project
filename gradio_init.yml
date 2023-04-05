@@ -39,4 +39,4 @@ initial: bed
 random_seed: 0
 semantic_model: Karlo
 bg_preprocess: True
-num_initial_image: 1
+num_initial_image: 4

@@ -13,6 +13,7 @@ import numpy as np
 import plotly.graph_objs as go
 from my.utils.seed import seed_everything
 import os
+import pickle
 
 class Intermediate:
     def __init__(self):
@@ -229,17 +230,21 @@ if __name__ == '__main__':
     prompt_input_2 = 'a dog'
     word_input_2 = 'dog'
     preprocess_choice_2 = True
-    intermediate = Intermediate()
-    seed_2 = 2023
     model = None
-    print('step 1: gen_pc_from_image')
-    init_output, pc_plot = gen_pc_from_image(intermediate, image_input, prompt_input_2, word_input_2,
-                                   preprocess_choice_2, seed_2)
-    torch.cuda.empty_cache()
+    seed_2 = 2023
+    if os.path.exists("intermediate.pkl"):
+        intermediate = pickle.load(open('intermediate.pkl','rb'))
+    else:
+        intermediate = Intermediate()
+        print('step 1: gen_pc_from_image')
+        gen_pc_from_image(intermediate, image_input, prompt_input_2, word_input_2,
+                                       preprocess_choice_2, seed_2)
+        torch.cuda.empty_cache()
+        pickle.dump(intermediate, open('intermediate.pkl','wb'))
     
     print('step 2: gen_3d')
-    opt_step_2 = 1
-    pivot_step_2 = 1
+    opt_step_2 = 100
+    pivot_step_2 = 100
     intermediate_output,logs,video_result = gen_3d(model,intermediate,prompt_input_2, word_input_2, seed_2, opt_step_2, pivot_step_2)
     
 
